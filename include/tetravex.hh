@@ -30,5 +30,7 @@ class Tile {
    json ToJSON();
 };
 
-json GenerateScenario(uint8_t order, uint8_t num_colours);
+std::vector<Tile> GenerateScenarioVec(uint8_t order, uint8_t num_colours);
+json GenerateSolvedScenario(uint8_t order, uint8_t num_colours);
+json GenerateRandomScenario(uint8_t order, uint8_t num_colours);
 };  // namespace TetraVex

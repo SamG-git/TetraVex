@@ -12,19 +12,19 @@ Copyright: S J GEORGE (2025)
 using nlohmann::json;
 
 /**
- * @brief Generates a random valid set of tiles. The tiles are output as a json
- * object from left to right, top to bottom. Outer edges are always one colour.
+ * @brief Generates a valid scenario. Output is a vector of tiles in order from
+ * left to right, top to bottom.
  * 
  * @param order 
- * @return json 
+ * @param num_colours 
+ * @return std::vector<TetraVex::Tile> 
  */
-json TetraVex::GenerateScenario(uint8_t order, uint8_t num_colours) {
+std::vector<TetraVex::Tile> TetraVex::GenerateScenarioVec(uint8_t order, 
+                                                          uint8_t num_colours) {
     /* Generate the tiles in a loop */
     srand(time(NULL));
     uint8_t outer = rand() % num_colours;
     std::vector<TetraVex::Tile> tile_vec;
-    json output;
-    output["scenario"] = json::array();
     for (size_t i = 0; i < order; i++) {
         for (size_t j = 0; j < order; j++) {
             size_t pos = order * i + j;
@@ -65,9 +65,58 @@ json TetraVex::GenerateScenario(uint8_t order, uint8_t num_colours) {
 
             tile.SetEdges(bottom, top, left, right);
             tile_vec.push_back(tile);
-            output["scenario"].push_back(tile.ToJSON());
         }
     }
 
+    return tile_vec;
+}
+
+/**
+ * @brief Generates a random valid set of tiles. The tiles are output as a json
+ * object from left to right, top to bottom. Outer edges are always one colour.
+ * 
+ * @param order 
+ * @return json 
+ */
+json TetraVex::GenerateSolvedScenario(uint8_t order, uint8_t num_colours) {
+    std::vector<TetraVex::Tile> tile_vec = 
+                              TetraVex::GenerateScenarioVec(order, num_colours);
+
+    json output;
+    output["scenario"] = json::array();
+
+    for (size_t i = 0; i < tile_vec.size(); i++) {
+        output["scenario"].push_back(tile_vec.at(i).ToJSON());
+    }
+    return output;
+}
+
+/**
+ * @brief Generates a random valid set of tiles. The tiles are output as a json
+ * object in a random order.
+ * 
+ * @param order 
+ * @param num_colours 
+ * @return json 
+ */
+json TetraVex::GenerateRandomScenario(uint8_t order, uint8_t num_colours) {
+    std::vector<TetraVex::Tile> tile_vec = 
+                              TetraVex::GenerateScenarioVec(order, num_colours);
+
+    /* Randomize the order of the vector */
+    std::vector<TetraVex::Tile> rand_tile_vec;
+
+    for (size_t i = 0; i < pow(order, 2); i++) {
+        size_t index = rand() % tile_vec.size();
+        rand_tile_vec.push_back(tile_vec.at(index));
+        tile_vec.erase(tile_vec.begin() + index);
+    }
+
+    /* Generate the JSON structure */
+    json output;
+    output["scenario"] = json::array();
+    for (size_t i = 0; i < rand_tile_vec.size(); i++) {
+        output["scenario"].push_back(rand_tile_vec.at(i).ToJSON());
+    }
     return output;
 }
