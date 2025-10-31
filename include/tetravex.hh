@@ -3,6 +3,8 @@ License: 3-Clause BSD
 Copyright: S J GEORGE (2025)
 */
 
+#pragma once
+
 #include <nlohmann/json.hpp>
 
 #include <vector>
@@ -28,4 +30,5 @@ class Tile {
    json ToJSON();
 };
 
+json GenerateScenario(uint8_t order, uint8_t num_colours);
 };  // namespace TetraVex
