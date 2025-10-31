@@ -108,7 +108,15 @@ json TetraVex::GenerateRandomScenario(uint8_t order, uint8_t num_colours) {
 
     for (size_t i = 0; i < pow(order, 2); i++) {
         size_t index = rand() % tile_vec.size();
-        rand_tile_vec.push_back(tile_vec.at(index));
+        TetraVex::Tile tile = tile_vec.at(index);
+
+        /* Rotate the tile a random number of times */
+        size_t num_rotate = rand() % 3;
+        for (size_t j = 0; i < num_rotate; j++) {
+            tile.Rotate();
+        }
+
+        rand_tile_vec.push_back(tile);
         tile_vec.erase(tile_vec.begin() + index);
     }
 

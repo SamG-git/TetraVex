@@ -63,6 +63,23 @@ uint8_t TetraVex::Tile::GetRight() {
     return this->right_;
 }
 
+/**
+ * @brief Rotates the tile 90 degrees clockwise.
+ * 
+ */
+void TetraVex::Tile::Rotate() {
+    uint8_t new_top, new_bottom, new_left, new_right;
+
+    new_top = this->left_;
+    new_bottom = this->right_;
+    new_left = this->bottom_;
+    new_right = this->top_;
+
+    this->left_ = new_left;
+    this->right_ = new_right;
+    this->top_ = new_top;
+    this->bottom_ = new_bottom;
+}
 
 /**
  * @brief Sets the edge values for the tile.

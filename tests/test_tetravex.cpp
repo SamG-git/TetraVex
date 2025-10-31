@@ -85,3 +85,45 @@ TEST(TetraVexTile, FromJson2) {
     EXPECT_EQ(tile.GetLeft(), 7);
     EXPECT_EQ(tile.GetRight(), 8);
 }
+
+/* Test to see if Roate method works as intended */
+TEST(TetraVexTile, Rotate1) {
+    json tile_json = json::parse(R"(
+    {
+    "tile": {
+        "bottom": 1,
+        "top": 2,
+        "left": 3,
+        "right": 4
+    }})");
+
+    TetraVex::Tile tile(tile_json);
+
+    tile.Rotate();
+
+    EXPECT_EQ(tile.GetBottom(), 4);
+    EXPECT_EQ(tile.GetTop(), 3);
+    EXPECT_EQ(tile.GetLeft(), 1);
+    EXPECT_EQ(tile.GetRight(), 2);
+}
+
+/* Test to see if Roate method works as intended */
+TEST(TetraVexTile, Rotate2) {
+    json tile_json = json::parse(R"(
+    {
+    "tile": {
+        "bottom": 5,
+        "top": 6,
+        "left": 7,
+        "right": 8
+    }})");
+
+    TetraVex::Tile tile(tile_json);
+
+    tile.Rotate();
+
+    EXPECT_EQ(tile.GetBottom(), 8);
+    EXPECT_EQ(tile.GetTop(), 7);
+    EXPECT_EQ(tile.GetLeft(), 5);
+    EXPECT_EQ(tile.GetRight(), 6);
+}
