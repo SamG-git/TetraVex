@@ -8,6 +8,63 @@ Copyright: S J GEORGE (2025)
 #include "tetravex.hh"
 
 /**
+ * @brief Construct a new Tetra Vex:: Tile object
+ * 
+ */
+TetraVex::Tile::Tile() {
+    return;
+}
+
+/**
+ * @brief Construct a new Tetra Vex:: Tile:: Tile object
+ * 
+ * @param in 
+ */
+TetraVex::Tile::Tile(json &in) {
+    this->bottom_ = in["tile"]["bottom"];
+    this->top_ = in["tile"]["top"];
+    this->right_ = in["tile"]["right"];
+    this->left_ = in["tile"]["left"];
+}
+
+/**
+ * @brief Get the value of the bottom edge
+ * 
+ * @return uint8_t 
+ */
+uint8_t TetraVex::Tile::GetBottom() {
+    return this->bottom_;
+}
+
+/**
+ * @brief Get the value of the top edge
+ * 
+ * @return uint8_t 
+ */
+uint8_t TetraVex::Tile::GetTop() {
+    return this->top_;
+}
+
+/**
+ * @brief Get the value of the left edge
+ * 
+ * @return uint8_t 
+ */
+uint8_t TetraVex::Tile::GetLeft() {
+    return this->left_;
+}
+
+/**
+ * @brief Get the value of the right edge
+ * 
+ * @return uint8_t 
+ */
+uint8_t TetraVex::Tile::GetRight() {
+    return this->right_;
+}
+
+
+/**
  * @brief Sets the edge values for the tile.
  * 
  * @param bottom 

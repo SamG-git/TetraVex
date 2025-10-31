@@ -12,12 +12,20 @@ using nlohmann::json;
 namespace TetraVex {
 class Tile {
  private:
-    uint8_t bottom_ = 0, left_ = 0, right_ = 0, top_ = 0;
+   uint8_t bottom_ = 0, left_ = 0, right_ = 0, top_ = 0;
 
  public:
-    void SetEdges(uint8_t bottom, uint8_t top, uint8_t left, uint8_t right);
-    void Rotate();
-    json ToJSON();
+   Tile();
+   Tile(json &in);
+
+   uint8_t GetBottom();
+   uint8_t GetTop();
+   uint8_t GetLeft();
+   uint8_t GetRight();
+
+   void SetEdges(uint8_t bottom, uint8_t top, uint8_t left, uint8_t right);
+   void Rotate();
+   json ToJSON();
 };
 
 };  // namespace TetraVex
