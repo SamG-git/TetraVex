@@ -1,5 +1,3 @@
-
-
 add_library(tetravex STATIC tile.cpp generate.cpp)
 add_executable(tv tetravex.cpp)
 target_include_directories(tetravex PRIVATE ../include/)

@@ -20,6 +20,7 @@ using nlohmann::json;
  */
 json TetraVex::GenerateScenario(uint8_t order, uint8_t num_colours) {
     /* Generate the tiles in a loop */
+    srand(time(NULL));
     uint8_t outer = rand() % num_colours;
     std::vector<TetraVex::Tile> tile_vec;
     json output;
