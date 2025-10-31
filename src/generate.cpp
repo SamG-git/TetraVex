@@ -112,7 +112,7 @@ json TetraVex::GenerateRandomScenario(uint8_t order, uint8_t num_colours) {
 
         /* Rotate the tile a random number of times */
         size_t num_rotate = rand() % 3;
-        for (size_t j = 0; i < num_rotate; j++) {
+        for (size_t j = 0; j < num_rotate; j++) {
             tile.Rotate();
         }
 
