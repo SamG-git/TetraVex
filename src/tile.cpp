@@ -64,6 +64,15 @@ const uint8_t TetraVex::Tile::GetRight() {
 }
 
 /**
+ * @brief Gets the index value of the tile
+ * 
+ * @return const size_t 
+ */
+const size_t TetraVex::Tile::GetIndex() {
+    return this->idx_;
+}
+
+/**
  * @brief Rotates the tile 90 degrees clockwise.
  * 
  */
@@ -79,6 +88,15 @@ void TetraVex::Tile::Rotate() {
     this->right_ = new_right;
     this->top_ = new_top;
     this->bottom_ = new_bottom;
+}
+
+/**
+ * @brief Set the tile's index
+ * 
+ * @param idx 
+ */
+void TetraVex::Tile::SetIndex(size_t idx) {
+    this->idx_ = idx;
 }
 
 /**

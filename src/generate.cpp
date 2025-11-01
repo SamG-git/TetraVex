@@ -29,6 +29,7 @@ static inline std::vector<TetraVex::Tile> GenerateScenarioVec(uint8_t order,
         for (size_t j = 0; j < order; j++) {
             size_t pos = order * i + j;
             TetraVex::Tile tile;
+            tile.SetIndex(pos);
             uint8_t bottom, top, left, right;
 
             /* Set the left edge to outer if first in row.

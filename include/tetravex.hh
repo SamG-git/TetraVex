@@ -15,6 +15,7 @@ namespace TetraVex {
 class Tile {
  private:
    uint8_t bottom_ = 0, left_ = 0, right_ = 0, top_ = 0;
+   size_t idx_ = 0;
 
  public:
    Tile();
@@ -24,7 +25,9 @@ class Tile {
    const uint8_t GetTop();
    const uint8_t GetLeft();
    const uint8_t GetRight();
-
+   const size_t GetIndex();
+   
+   void SetIndex(size_t idx);
    void SetEdges(uint8_t bottom, uint8_t top, uint8_t left, uint8_t right);
    void Rotate();
    json ToJSON();
@@ -36,6 +39,10 @@ class Tile {
       } else {
          return false;
       }
+   }
+
+   friend bool operator< (const Tile&lhs, const Tile&rhs) {
+      return lhs.idx_ < rhs.idx_;
    }
 };
 
@@ -63,6 +70,7 @@ class Scenario {
 
     // Solvers
     void BogoSolve();
+    void BruteForceSolve();
 };
 
 /* Helper functions for scenario generation */

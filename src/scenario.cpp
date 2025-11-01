@@ -37,6 +37,7 @@ TetraVex::Scenario::Scenario(std::vector<TetraVex::Tile> tiles) {
 TetraVex::Scenario::Scenario(json &in) {
     for (size_t i = 0; i < in["scenario"].size(); i++) {
         TetraVex::Tile tile(in["scenario"].at(i));
+        tile.SetIndex(i);
         this->tiles_.push_back(tile);
     }
     
