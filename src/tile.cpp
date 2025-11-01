@@ -32,7 +32,7 @@ TetraVex::Tile::Tile(json &in) {
  * 
  * @return uint8_t 
  */
-uint8_t TetraVex::Tile::GetBottom() {
+const uint8_t TetraVex::Tile::GetBottom() {
     return this->bottom_;
 }
 
@@ -41,7 +41,7 @@ uint8_t TetraVex::Tile::GetBottom() {
  * 
  * @return uint8_t 
  */
-uint8_t TetraVex::Tile::GetTop() {
+const uint8_t TetraVex::Tile::GetTop() {
     return this->top_;
 }
 
@@ -50,7 +50,7 @@ uint8_t TetraVex::Tile::GetTop() {
  * 
  * @return uint8_t 
  */
-uint8_t TetraVex::Tile::GetLeft() {
+const uint8_t TetraVex::Tile::GetLeft() {
     return this->left_;
 }
 
@@ -59,7 +59,7 @@ uint8_t TetraVex::Tile::GetLeft() {
  * 
  * @return uint8_t 
  */
-uint8_t TetraVex::Tile::GetRight() {
+const uint8_t TetraVex::Tile::GetRight() {
     return this->right_;
 }
 

@@ -8,6 +8,10 @@ Copyright: S J GEORGE (2025)
 
 #include "tetravex.hh"
 
+/*
+This file tests the Tile object and its methods.
+*/
+
 /* Test to see if a JSON Tile object is parsed correctly */
 TEST(TetraVexTile, ToJson1) {
     json expected_json = json::parse(R"(
