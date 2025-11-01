@@ -77,3 +77,43 @@ TEST(TetraVexScenario, JsonLoopback2) {
     TetraVex::Scenario scenario(expected_json);
     EXPECT_EQ(scenario.ToJSON(), expected_json);
 }
+
+/* Checks to see that the Check method returns true on a known good scenario */
+TEST(TetraVexScenario, KnownGoodCheck) {
+    json scenario_json = json::parse(
+    R"({"scenario":[{"tile":{"bottom":3,"left":0,"right":3,"top":0}},{"tile":
+    {"bottom":2,"left":3,"right":3,"top":0}},{"tile":{"bottom":2,"left":3,
+    "right":0,"top":0}},{"tile":{"bottom":0,"left":0,"right":0,"top":0}},
+    {"tile":{"bottom":2,"left":0,"right":2,"top":3}},{"tile":{"bottom":1,
+    "left":2,"right":3,"top":2}},{"tile":{"bottom":3,"left":3,"right":3,
+    "top":2}},{"tile":{"bottom":2,"left":3,"right":0,"top":0}},{"tile":
+    {"bottom":0,"left":0,"right":3,"top":2}},{"tile":{"bottom":2,"left":3,
+    "right":2,"top":1}},{"tile":{"bottom":0,"left":2,"right":2,"top":3}},
+    {"tile":{"bottom":3,"left":2,"right":0,"top":2}},{"tile":{"bottom":0,
+    "left":0,"right":2,"top":0}},{"tile":{"bottom":0,"left":2,"right":3,
+    "top":2}},{"tile":{"bottom":0,"left":3,"right":2,"top":0}},{"tile":
+    {"bottom":0,"left":2,"right":0,"top":3}}]})");
+
+    TetraVex::Scenario scenario(scenario_json);
+    EXPECT_TRUE(scenario.Check());
+}
+
+/* Checks to see that the Check method returns false on a known bad scenario */
+TEST(TetraVexScenario, KnownBadCheck) {
+    json scenario_json = json::parse(
+    R"({"scenario":[{"tile":{"bottom":0,"left":0,"right":3,"top":1}},{"tile":
+    {"bottom":2,"left":0,"right":2,"top":1}},{"tile":{"bottom":1,"left":1,
+    "right":1,"top":0}},{"tile":{"bottom":0,"left":3,"right":2,"top":2}},
+    {"tile":{"bottom":0,"left":1,"right":3,"top":2}},{"tile":{"bottom":3,
+    "left":2,"right":2,"top":2}},{"tile":{"bottom":0,"left":1,"right":0,
+    "top":1}},{"tile":{"bottom":2,"left":0,"right":0,"top":0}},{"tile":
+    {"bottom":0,"left":1,"right":0,"top":2}},{"tile":{"bottom":1,"left":0,
+    "right":2,"top":0}},{"tile":{"bottom":2,"left":1,"right":0,"top":3}},
+    {"tile":{"bottom":2,"left":3,"right":0,"top":1}},{"tile":{"bottom":0,
+    "left":0,"right":0,"top":2}},{"tile":{"bottom":0,"left":0,"right":1,
+    "top":3}},{"tile":{"bottom":2,"left":1,"right":1,"top":3}},{"tile":
+    {"bottom":0,"left":1,"right":2,"top":0}}]})");
+
+    TetraVex::Scenario scenario(scenario_json);
+    EXPECT_FALSE(scenario.Check());
+}

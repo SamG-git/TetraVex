@@ -53,7 +53,9 @@ class Scenario {
     std::vector<TetraVex::Tile> GetTiles();
     json ToJSON();
 
+    // Helpers
     void Randomise();
+    bool Check();
 
     // Generators
     void GenerateSolvedScenario(uint8_t order, uint8_t num_colours);
