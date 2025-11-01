@@ -131,3 +131,21 @@ TEST(TetraVexTile, Rotate2) {
     EXPECT_EQ(tile.GetLeft(), 5);
     EXPECT_EQ(tile.GetRight(), 6);
 }
+
+/* Test the eqaulity operator */
+TEST(TetraVexTile, Equal) {
+    TetraVex::Tile tile1, tile2;
+    tile1.SetEdges(0, 1, 2, 3);
+    tile2.SetEdges(0, 1, 2, 3);
+
+    EXPECT_TRUE(tile1 == tile2);
+}
+
+/* Test the equality operator */
+TEST(TetraVexTile, NotEqual) {
+    TetraVex::Tile tile1, tile2;
+    tile1.SetEdges(0, 1, 2, 3);
+    tile2.SetEdges(1, 2, 3, 1);
+
+    EXPECT_FALSE(tile1 == tile2);
+}
