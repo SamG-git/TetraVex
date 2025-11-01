@@ -5,6 +5,7 @@ Copyright: S J GEORGE (2025)
 
 #include <nlohmann/json.hpp>
 
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,7 +17,8 @@ char help[] =
     "\t--help: Display this helpful message\n" \
     "\t--generate: Generate a puzzle with randomised tile order\n" \
     "\t--generate-solved: Generate a puzzle with a solved tile order\n" \
-    "All outputs are JSON\n";
+    "\t --bogo-solve FILE: Solve the puzzle in FILE.\n"
+    "All outputs are JSON, all inputs are JSON files\n";
               
 
 int main(int argc, char** argv) {
@@ -26,7 +28,7 @@ int main(int argc, char** argv) {
     }
 
     if (std::string(*(argv + 1)) == "--generate"){
-        auto scenario = TetraVex::GenerateRandomScenario(4, 4);
+        auto scenario = TetraVex::GenerateRandomScenario(3, 4);
         std::cout << scenario;
         exit(EXIT_SUCCESS);
     }
@@ -34,6 +36,20 @@ int main(int argc, char** argv) {
     if (std::string(*(argv + 1)) == "--generate-solved"){
         auto scenario = TetraVex::GenerateSolvedScenario(4, 4);
         std::cout << scenario;
+        exit(EXIT_SUCCESS);
+    }
+
+    if (std::string(*(argv + 1)) == "--bogo-solve"){
+        if (argc < 3) {
+            std::cout << "--bogo-solve needs a FILE as argument" << std::endl;
+            exit(EXIT_FAILURE);
+        }
+        std::ifstream f(*(argv + 2));
+        json scenario_json = json::parse(f);
+
+        auto scenario = TetraVex::Scenario(scenario_json);
+        scenario.BogoSolve();
+        std::cout << scenario.ToJSON();
         exit(EXIT_SUCCESS);
     }
 }

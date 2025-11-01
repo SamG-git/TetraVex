@@ -111,7 +111,7 @@ bool TetraVex::Scenario::Check() {
                 if (i > 0) {
                     // Check with tile one higher
                     if (this->tiles_.at(pos).GetLeft() != 
-                                           this->tiles_.at(pos - 4).GetLeft()) {
+                                this->tiles_.at(pos - this->order_).GetLeft()) {
                         return false;
                     }
                 } else {
@@ -133,7 +133,7 @@ bool TetraVex::Scenario::Check() {
                 if (i > 0) {
                     // Check with tile one higher
                     if (this->tiles_.at(pos).GetRight() != 
-                                           this->tiles_.at(pos - 4).GetRight()) {
+                               this->tiles_.at(pos - this->order_).GetRight()) {
                         return false;
                     }
                 } else {
@@ -158,7 +158,7 @@ bool TetraVex::Scenario::Check() {
             } else {
                 // Check with tile in row above
                 if (this->tiles_.at(pos).GetTop() != 
-                                         this->tiles_.at(pos - 4).GetBottom()) {
+                                         this->tiles_.at(pos - this->order_).GetBottom()) {
                     return false;
                 }
             }

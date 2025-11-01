@@ -60,6 +60,9 @@ class Scenario {
     // Generators
     void GenerateSolvedScenario(uint8_t order, uint8_t num_colours);
     void GenerateRandomScenario(uint8_t order, uint8_t num_colours);
+
+    // Solvers
+    void BogoSolve();
 };
 
 /* Helper functions for scenario generation */
